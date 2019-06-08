@@ -9,14 +9,30 @@ end
 end
 
 post '/signup' do
-@users = Users.new
-@users.username = params[:username]
-@users.password = params[:password]
+@user = Users.new
+@user.username = params[:username]
+@user.password = params[:password]
 if @user.save
   redirect '/login'
 else
   erb :'users/signup'
 end
 end
+
+post '/login' do
+  @user = Users.find_by(username: params[:username], password: params[:password])
+  if @user
+    session[:user_id] = @user.id
+    redirect '/cars'
+  else
+    redirect '/login'
+  end
+end
+
+get '/logout' do
+  session.clear
+  redirect '/'
+end 
+
 
 end
