@@ -4,17 +4,18 @@ get '/signup' do
   if logged_in?
     redirect '/cars'
   else
-  erb :'/users/new.signup'
+  erb :'/users/signup'
+end
 end
 
-post '/users' do
+post '/signup' do
 @users = Users.new
 @users.username = params[:username]
 @users.password = params[:password]
 if @user.save
   redirect '/login'
 else
-  erb :'users/new.signup'
+  erb :'users/signup'
 end
 end
 

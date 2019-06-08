@@ -24,7 +24,8 @@ def login(username,password)
     session[:username] = user.username
   else
     redirect '/login'
+end
+end
 
-
-
+end
 end
