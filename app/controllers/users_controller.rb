@@ -14,9 +14,14 @@ post '/signup' do
 @user.password = params[:password]
 if @user.save
   redirect '/login'
-else
+elsif
   erb :'users/signup'
+
 end
+end
+
+get '/login' do
+  erb :'/users/login'
 end
 
 post '/login' do
@@ -24,7 +29,7 @@ post '/login' do
   if @user
     session[:user_id] = @user.id
     redirect '/cars'
-  else
+  elsif
     redirect '/login'
   end
 end
@@ -32,7 +37,7 @@ end
 get '/logout' do
   session.clear
   redirect '/'
-end 
+end
 
 
 end
