@@ -1,12 +1,11 @@
 <!DOCTYPE html>
   <html>
-  <body>
   <style>
     h1 {text-align:center;}
     </style>
   <h1> <%=@car.name %></h1>
   <h2> Add review</h2>
-  <form action="/reviews/<%=@product.id%>" method="POST">
+  <form action="/reviews/<%=@car.id%>" method="POST">
   <textarea name="content" rows=
   "9" cols="60"></textarea>
 
