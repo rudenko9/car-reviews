@@ -1,8 +1,14 @@
-<center>
-<h1> <%=@car.name %><?h1>
-</center>
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+  h1 {text-align:center;}
+  </style>
+<h1> <%=@car.name %></h1>
 <h2> Add review</h2>
-<p><textarea name="message"></textarea></p>
+<p><textarea name="message" rows=
+"9" cols="60"></textarea></p>
+
 <p> Rate this product:
 <select name="review">
 <option selected="selected" value="poor">poor</option>
@@ -10,3 +16,4 @@
 <option selected="selected" value="excellent">excellent</option>
 </select>
  </p>
+ <a href="/">Home</a>
