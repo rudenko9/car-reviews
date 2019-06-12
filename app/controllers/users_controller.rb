@@ -1,3 +1,7 @@
+require 'sinatra/base'
+require'rack-flash'
+
+
 class UsersController < ApplicationController
 
 get '/signup' do
@@ -9,19 +13,14 @@ end
 end
 
 post '/signup' do
-  if !params[:username].empty? && !params[:password].empty?
-    @user = User.new(:username => params[:username], :password => params[:password])
+  if !params[:name].empty? && !params[:password].empty?
+    @user = User.new(:name => params[:name], :password => params[:password])
     @user.save
     session[:user_id]= @user.id
-#@user = Users.new
-#@user.username = params[:username]
-#@user.password = params[:password]
-#if @user.save
-  redirect '/login'
-elsif
-  redirect '/users/failure'
-elsif
-  erb :'users/signup'
+  redirect '/signup'
+else
+  flash[:alert] = "Username and password are required"
+  redirect '/signup'
 
 end
 end
@@ -35,7 +34,7 @@ end
 end
 
 post '/login' do
-  user = Users.find_by(username: params[:username])
+  user = User.find_by(:name => params[:name])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
     redirect '/cars'
