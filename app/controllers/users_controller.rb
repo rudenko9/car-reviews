@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
 get '/signup' do
   if logged_in?
-    redirect '/cars'
+    redirect '/signup'
   else
   erb :'/users/signup'
 end
@@ -14,7 +14,7 @@ end
 
 post '/signup' do
   if !params[:name].empty? && !params[:password].empty?
-    @user = User.new(:name => params[:name], :password => params[:password])
+    @user = User.new(params)
     @user.save
     session[:user_id]= @user.id
   redirect '/signup'
