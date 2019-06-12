@@ -16,7 +16,6 @@ if @user.save
   redirect '/login'
 elsif
   erb :'users/signup'
-
 end
 end
 
@@ -35,7 +34,7 @@ post '/login' do
 end
 
 get '/logout' do
-  session.clear
+  session.clear if session[:user_id]
   redirect '/'
 end
 

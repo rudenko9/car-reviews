@@ -7,10 +7,10 @@
 <% @car.reviews.each do |review| %>
 <p>
   <%=review.content %> <br>
-  <font color="aqua">Car rating:</font><%= review.rating%><br>
+  <font color="teal">Car rating:</font><%= review.rating%><br>
 
   <% if review.user %>
-  <font color="aqua"> Written by:</font><%= review.user.username%><br>
+  <font color="teal"> Written by:</font><%= review.user.username%><br>
 
   <% if logged_in? and review.user == current_user %>
   <a href="/reviews/<%=review.id%>/edit">Edit review</a><br>
