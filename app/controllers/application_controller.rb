@@ -9,6 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "not_a_secret"
   end
 
+
 get "/"  do
   erb :index
 end
@@ -16,20 +17,20 @@ end
 helpers do
 
   def logged_in?
-    !!session[:username]
+    !!current_user
+    #session[:username]
   end
 
-def login(username,password)
-  if user = User.find_by(:username => username) && user.authenticate(password)
-    session[:username] = user.username
-  else
-    redirect '/login'
-end
-end
+  def current_user
+   User.find_by(id: session[:user_id])
+  end
+  #def login(username)
+  #  if user = User.find_by(:username => username)
+  #    session[:username] = user.username
+  #  else
+  #    redirect '/login'
+  #end
+  #end
 
-get'/users/home' do
-  @user = User.find(session[:user_id])
-  erb :'/users/home'
-end
 end
 end
