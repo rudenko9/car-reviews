@@ -13,6 +13,11 @@ end
 end
 
 post '/signup' do
+  if params[:name] == "" || params[:password] = ""
+    flash[:alert] = "User with this name already exist, please go to Log in page"
+    redirect'/signup'
+  end
+
   if !params[:name].empty? && !params[:password].empty?
     @user = User.new(params)
     @user.save
