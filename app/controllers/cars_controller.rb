@@ -5,7 +5,7 @@ get '/cars' do
 end
 
 get '/cars/new' do
-  if logged-in?
+  if logged_in?
   erb :'/cars/new'
 else
   flash[:alert] = "You have to be logged in to add a product"
@@ -15,7 +15,7 @@ end
 
 post '/cars' do
   if !params[:car_name].empty?
-    car = Car.find_or_create_by(name: params[:product_name])
+    car = Car.find_or_create_by(name: params[:car_name], model: params[:car_model])
     redirect "/cars/#{car.id}"
   else
     flash[:alert] = "Car name cannot be blank"

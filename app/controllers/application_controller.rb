@@ -21,19 +21,11 @@ helpers do
 
   def logged_in?
     !!current_user
-    #session[:username]
   end
 
   def current_user
    User.find_by(id: session[:user_id])
   end
-  #def login(username)
-  #  if user = User.find_by(:username => username)
-  #    session[:username] = user.username
-  #  else
-  #    redirect '/login'
-  #end
-  #end
 
 end
 end
