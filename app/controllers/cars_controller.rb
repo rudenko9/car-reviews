@@ -6,7 +6,7 @@ end
 
 get '/cars/new' do
   if logged-in?
-  erb : 'cars/new'
+  erb :'/cars/new'
 else
   flash[:alert] = "You have to be logged in to add a product"
   redirect '/login'
@@ -25,7 +25,7 @@ end
 
 get '/cars/:id' do
 @car = Car.find_by_id(params[:id])
-erb :'cars/show'
+erb :'/cars/show'
 end
 
 end
