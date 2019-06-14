@@ -3,5 +3,5 @@ has_secure_password
 has_many :reviews
 has_many :cars, :through => :reviews
 
-validates :name, uniqueness: true
+validates :name, presence: true
 end

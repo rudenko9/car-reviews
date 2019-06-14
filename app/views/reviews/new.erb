@@ -3,7 +3,7 @@
   <style>
     h1 {text-align:center;}
     </style>
-  <h1> <%=@car.name %></h1>
+  <h1> <%= @car.name %></h1>
   <h2> Add review</h2>
   <form action="/reviews/<%=@car.id%>" method="POST">
   <textarea name="content" rows=
@@ -16,7 +16,6 @@
   <option selected="selected" value="excellent">excellent</option>
   </select>
    </p>
-   <p><input type="submit" value="Submit"></p>
+   <p><input type="submit" value="Add Comment"></p>
  </form>
    <a href="/">Home</a>
-   
