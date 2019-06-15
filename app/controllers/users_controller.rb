@@ -13,19 +13,18 @@ end
 end
 
 post '/signup' do
-  if params[:name] == "" || params[:password] = ""
+  if User.find_by(name: params[:name])
     flash[:alert] = "User with this name already exist, please go to Log in page"
     redirect'/signup'
-  end
-
-  if !params[:name].empty? && !params[:password].empty?
+  elsif params[:name].empty? && params[:password].empty?
+    flash[:alert] = "Username and password are required"
+    redirect '/signup'
     @user = User.new(params)
-    @user.save
+  if   @user.save
     session[:user_id]= @user.id
-  redirect '/signup'
-else
-  flash[:alert] = "Username and password are required"
-  redirect '/signup'
+  redirect '/cars'
+
+  end
 
 end
 end

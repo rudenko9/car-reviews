@@ -12,7 +12,7 @@ end
 
 post '/reviews/:car_id' do
 @car = Car.find_by_id(params[:car_id])
-if params[:content].empty?
+if params[:content].empty? || params[:car_id] == nil
 flash[:alert] = " Please, add some review."
 redirect '/reviews/#{@car.id}/new'
 else
