@@ -4,7 +4,10 @@
     h1 {text-align:center;}
     </style>
   <h1> <%=@review.car.name %></h1>
-  <h2> Edit review</h2>
+  
+  <h3> Edit review</h3>
+
+  <p>
   <form action="/reviews/<%=@review.id%>/edit" method="POST">
   <textarea name="content" rows=
   "9" cols="60"> <%=@review.content%> </textarea>
@@ -18,4 +21,5 @@
    </p>
    <p><input type="submit" value="Submit"></p>
  </form>
-   <a href="/">Home</a>
+</p>
+ <a href="/">Home</a>

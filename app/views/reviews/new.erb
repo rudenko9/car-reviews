@@ -4,7 +4,8 @@
     h1 {text-align:center;}
     </style>
   <h1> <%= @car.name %></h1>
-  <h2> Add review</h2>
+  <h2> <%=@car.model %></h2>
+  <h3> Add review</h3>
   <form action="/reviews/<%=@car.id%>" method="POST">
   <textarea name="content" rows=
   "9" cols="60"></textarea>
