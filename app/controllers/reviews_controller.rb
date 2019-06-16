@@ -18,11 +18,28 @@ redirect '/reviews/#{@car.id}/new'
 else
   Review.create(content: params[:content], car_id: params[:car_id], user_id: current_user.id)
   redirect '/cars/#{@car.id}'
-
 end
 end
 
+get '/reviews/:review_id/edit' do
+  @review = Review.find_by_id(params[:review_id])
+  if @review &&  @review.user == current_user
+erb :'reviews/edit'
+else
+  flash[:alert] = 'You must be looged in as a different user to access that review'
+  redirect '/reviews/#{@review.car.id}'
+end
+end
 
+patch '/reviews/:review_id/edit' do
+@review = Review.find_by_id(params[:review_id])
+if @review.user == current_user
+  @review.update(content: params[:content])
+else
+  flash[:alert] = "Review updated successfully!"
+end
+  redirect '/reviews/#{@review.car.id}'
+end
 
 
 end
