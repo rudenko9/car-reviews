@@ -2,9 +2,12 @@
   <html>
   <style>
     h1 {text-align:center;}
+    h2 {text-align:center;}
     </style>
+    <p><font color="green">
   <h1> <%= @car.name %></h1>
   <h2> <%=@car.model %></h2>
+</p>
   <h3> Add review</h3>
   <form action="/reviews/<%=@car.id%>" method="POST">
   <textarea name="content" rows=
