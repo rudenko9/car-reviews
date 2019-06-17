@@ -12,44 +12,44 @@ end
 
 post '/reviews/:car_id' do
 @car = Car.find_by_id(params[:car_id])
-if params[:content].empty? || params[:car_id] == nil
+if params[:content].empty?
 flash[:alert] = " Please, add some review."
-redirect '/reviews/#{@car.id}/new'
+redirect "/reviews/#{@car.id}/new"
 else
-  Review.create(content: params[:content], car_id: params[:car_id], user_id: current_user.id)
-  redirect '/cars/#{@car.id}'
+Review.create(content: params[:content], car_id: params[:car_id], user_id: current_user.id)
+  redirect "/cars/#{@car.id}"
 end
 end
 
-get '/reviews/:review_id/edit' do
-  @review = Review.find_by_id(params[:review_id])
+
+get '/reviews/:id/edit' do
+  @review = Review.find_by_id(params[:id])
   if @review &&  @review.user == current_user
 erb :'reviews/edit'
 else
   flash[:alert] = 'You must be looged in as a different user to access that review'
-  redirect '/cars/#{@review.car_id}'
+  redirect "reviews/#{@car.id}"
+  #'/cars/#{@car.review.id}'
   #redirect '/cars/#{@review.car.id}'
 end
 end
 
-post '/reviews/:review_id/edit' do
-@review = Review.find_by_id(params[:review_id])
+post '/reviews/:id/edit' do
+@review = Review.find_by_id(params[:id])
 if @review.user == current_user
   @review.update(content: params[:content])
+  redirect "/cars"
+
 else
   flash[:alert] = "Review updated successfully!"
 end
-  redirect '/cars/#{@review.car_id}'
-  #redirect '/cars/#{@review.car.id}'
 end
 
-get '/reviews/:review_id/delete'  do
-  @review = Review.find_by_id(params[:review_id])
-  @review_id = @review.car.id
+get '/reviews/:id/delete'  do
+  @review = Review.find_by_id(params[:id])
   if logged_in? && @review.user == current_user
   @review.delete
-  redirect '/cars/#{@review.car_id}'
-  #redirect '/cars/#{@review.car.id}'
+  redirect '/cars'
 end
 end
 
