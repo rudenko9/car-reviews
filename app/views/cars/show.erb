@@ -14,7 +14,7 @@
   <font color="teal">Car review:</font><%= review.car_id%><br>
 
   <% if review.user %>
-  <font color="teal"> Written by:</font><%= review.user.name%><br>
+  <font color="teal"> Written by:</font><%= review.user.name.capitalize%><br>
 
   <% if logged_in? and review.user == current_user %>
   <a href="/reviews/<%=review.id%>/edit">Edit review</a><br>

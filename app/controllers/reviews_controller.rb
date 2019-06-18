@@ -38,10 +38,9 @@ post '/reviews/:id/edit' do
 @review = Review.find_by_id(params[:id])
 if @review.user == current_user
   @review.update(content: params[:content])
+  flash[:alert] = "Review updated successfully!"
   redirect "/cars"
 
-else
-  flash[:alert] = "Review updated successfully!"
 end
 end
 
