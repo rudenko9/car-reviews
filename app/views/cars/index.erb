@@ -4,7 +4,7 @@
 <body>
   <h1>Cars </h1>
   <h2> Welcome:
-    <%=current_user.name.upcase %>
+    <%=current_user.name.capitalize %>
     </h2>
   <%@cars.each do |car|%>
   <li> <a href="/cars/<%=car.id%>"><%= car.name %></a></li>
