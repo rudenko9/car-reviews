@@ -43,7 +43,7 @@ post '/login' do
     session[:user_id] = user.id
     redirect '/cars'
   end
-  flash[:alert] = "Username and password are required"
+  flash[:alert] = "Username and password are required or not exist please go to Sign up page"
     redirect '/login'
   end
 
