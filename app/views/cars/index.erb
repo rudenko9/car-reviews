@@ -6,12 +6,14 @@
   <h2> Welcome:
     <%=current_user.name.capitalize %>
     </h2>
+
   <%@cars.each do |car|%>
   <li> <a href="/cars/<%=car.id%>"><%= car.name %></a></li>
   <% end %>
   <br/>
 
   <div>
+
     <% if logged_in? %>
     <a href="/cars/new">Add a new car</a>
     <% end %>
