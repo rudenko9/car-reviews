@@ -19,13 +19,11 @@ post '/signup' do
   elsif params[:name].empty? && params[:password].empty?
     flash[:alert] = "Username and password are required"
     redirect '/signup'
+  end
     @user = User.new(params)
-  if   @user.save
+  if  @user.save
     session[:user_id]= @user.id
   redirect '/cars'
-
-  end
-
 end
 end
 
